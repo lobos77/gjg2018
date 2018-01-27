@@ -1,5 +1,6 @@
 #include "Joystick.h"
 #include "res.h"
+#include <iostream>
 
 Joystick::Joystick(): _pressed(false), _dir(0, 0)
 {
@@ -10,6 +11,7 @@ Joystick::Joystick(): _pressed(false), _dir(0, 0)
     addEventListener(TouchEvent::TOUCH_DOWN, CLOSURE(this, &Joystick::onEvent));
     addEventListener(TouchEvent::TOUCH_UP, CLOSURE(this, &Joystick::onEvent));
     addEventListener(TouchEvent::MOVE, CLOSURE(this, &Joystick::onEvent));
+    addEventListener(TouchEvent::OVER, CLOSURE(this, &Joystick::onEvent));
 
     _finger = new Sprite;
     _finger->setResAnim(res::ui.getResAnim("finger"));
@@ -41,6 +43,12 @@ void Joystick::onEvent(Event* ev)
 
     if (te->type == TouchEvent::MOVE)
     {
+        std::cout << "MOVE" << std::endl;
+    }
+
+    if (te->type == TouchEvent::OVER)
+    {
+        std::cout << "OVER" << std::endl;
     }
 
     Vector2 center = getSize() / 2;

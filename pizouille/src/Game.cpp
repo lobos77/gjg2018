@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Joystick.h"
 #include "Player.h"
+#include "Map.h"
 #include "res.h"
 
 Game::Game()
@@ -14,21 +15,24 @@ void Game::init()
     setSize(getStage()->getSize());
 
     //create background
-    spSprite sky = new Sprite;
-    sky->setResAnim(res::ui.getResAnim("sky"));
+    //spSprite sky = new Sprite;
+    //sky->setResAnim(res::ui.getResAnim("sky"));
+    //sky->attachTo(this);
+
+    spSprite map = new Map;
+    //map->setResAnim(res::ui.getResAnim("map"));
+    map->attachTo(this);
 
 
-
-    sky->attachTo(this);
 
     //create player ship
-    _player = new Player;
-    _player->init(this);
+    //_player = new Player;
+    //_player->init(this);
 
     //create virtual joystick
-    _move = new Joystick;
-    _move->attachTo(this);
-    _move->setY(getHeight() - _move->getHeight());
+    //_move = new Joystick;
+    //_move->attachTo(this);
+    //_move->setY(getHeight() - _move->getHeight());
 }
 
 void Game::doUpdate(const UpdateState& us)
@@ -37,5 +41,5 @@ void Game::doUpdate(const UpdateState& us)
     //it is being called each frame
 
     //update player each frame
-    _player->update(us);
+    //_player->update(us);
 }
