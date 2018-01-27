@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <resources>
-	<set path = "res/images" />
+        <set path = "/images" />
 	<atlas>
 		<image file="joystick.png" />
 		<image file="finger.png" />
@@ -10,5 +10,12 @@
 		<image file="sky.jpg" />
 		<image file="ship.png" />
 		<image file="shipengine.png" />
+		<image file="map.png" />
+		<image file="tower.png" />
+
 	</atlas>
+
+    <atlas>
+		<image file="simpleSquare.png"/>
+    </atlas> 
 </resources>

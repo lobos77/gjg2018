@@ -1,7 +1,9 @@
 #include "Game.h"
 #include "Joystick.h"
 #include "Player.h"
+#include "Map.h"
 #include "res.h"
+#include "Grid.h"
 
 Game::Game()
 {
@@ -16,14 +18,19 @@ void Game::init()
     //create background
     spSprite sky = new Sprite;
     sky->setResAnim(res::ui.getResAnim("sky"));
-
-
-
     sky->attachTo(this);
+
+    //spSprite map = new Map;
+    //map->setResAnim(res::ui.getResAnim("map"));
+    //map->attachTo(this);
 
     //create player ship
     _player = new Player;
     _player->init(this);
+
+    _grid = new Grid;
+    _grid->init(this);
+    _grid->create(50);
 
     //create virtual joystick
     _move = new Joystick;
@@ -37,5 +44,5 @@ void Game::doUpdate(const UpdateState& us)
     //it is being called each frame
 
     //update player each frame
-    _player->update(us);
+    //_player->update(us);
 }

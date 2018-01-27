@@ -1,10 +1,13 @@
 #pragma once
 #include "oxygine-framework.h"
+#include "Grid.h"
+
 using namespace oxygine;
 
 DECLARE_SMART(Player, spPlayer);
 DECLARE_SMART(Joystick, spJoystick);
 DECLARE_SMART(Game, spGame);
+DECLARE_SMART(Grid, spGrid);
 class Game: public Actor
 {
 public:
@@ -19,4 +22,5 @@ private:
     spJoystick _move;
 
     spPlayer _player;
+    spGrid _grid;
 };
