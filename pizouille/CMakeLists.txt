@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 project (pizouille)
 
-set(EMSCRIPTEN 1)
+set(EMSCRIPTEN 0)
 ADD_SUBDIRECTORY(../oxygine-framework oxygine-framework)
 add_definitions(${OXYGINE_DEFINITIONS})
 include_directories(${OXYGINE_INCLUDE_DIRS})
@@ -14,7 +14,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OXYGINE_CXX_FLAGS}")
 add_executable(pizouille ./src/Game.cpp ./src/Joystick.cpp ./src/Player.cpp
 		./src/Unit.cpp ./src/example.cpp ./src/main.cpp ./src/res.cpp  ./src/Game.h
 		./src/Joystick.h ./src/Player.h ./src/Unit.h ./src/example.h ./src/res.h
-		./src/Map.cpp ./src/Map.h ./src/Tower.cpp ./src/Tower.h)
+		./src/Map.cpp ./src/Map.h ./src/Tower.cpp ./src/Tower.h
+        ./src/Grid.cpp ./src/Grid.h)
 target_link_libraries(pizouille ${OXYGINE_CORE_LIBS})
 
 

@@ -1,1 +1,1 @@
-rm -rf CMakeCache.txt CMakeFiles  Makefile cmake_install.cmake oxygine-framework/ ../data.js
+rm -rf CMakeCache.txt CMakeFiles  Makefile cmake_install.cmake oxygine-framework/ data_js_tracker.c libpizouille_1_main_js.a libpizouille_2_data_js.a main_js_tracker.c pizouille.html pizouille.js ../data.js

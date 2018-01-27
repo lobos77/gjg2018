@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <resources>
-	<set path = "res/images" />
+        <set path = "/images" />
 	<atlas>
 		<image file="joystick.png" />
 		<image file="finger.png" />
@@ -15,7 +15,7 @@
 
 	</atlas>
 
-	<atlas>
+    <!-- <atlas>
 		<image file="simpleSquare.png"/>
-	</atlas>
+    </atlas> -->
 </resources>
