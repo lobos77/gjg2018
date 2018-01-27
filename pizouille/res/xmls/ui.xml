@@ -15,7 +15,7 @@
 
 	</atlas>
 
-    <!-- <atlas>
+    <atlas>
 		<image file="simpleSquare.png"/>
-    </atlas> -->
+    </atlas> 
 </resources>
