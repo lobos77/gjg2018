@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 project (pizouille)
 
-
+set(EMSCRIPTEN 1)
 ADD_SUBDIRECTORY(../oxygine-framework oxygine-framework)
 add_definitions(${OXYGINE_DEFINITIONS})
 include_directories(${OXYGINE_INCLUDE_DIRS})
@@ -14,7 +14,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OXYGINE_CXX_FLAGS}")
 add_executable(pizouille ./src/Game.cpp ./src/Joystick.cpp ./src/Player.cpp
 		./src/Unit.cpp ./src/example.cpp ./src/main.cpp ./src/res.cpp  ./src/Game.h
 		./src/Joystick.h ./src/Player.h ./src/Unit.h ./src/example.h ./src/res.h
-		./src/Map.cpp ./src/Map.h ./src/Tower.cpp ./src/Tower.h src/Grid.cpp src/Grid.h)
+		./src/Map.cpp ./src/Map.h ./src/Tower.cpp ./src/Tower.h)
 target_link_libraries(pizouille ${OXYGINE_CORE_LIBS})
 
 
@@ -27,6 +27,6 @@ endif(WIN32)
 
 if (EMSCRIPTEN)
 	SET(CMAKE_EXECUTABLE_SUFFIX ".html")	
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s NO_EXIT_RUNTIME=1 -s WARN_ON_UNDEFINED_SYMBOLS=1 --memory-init-file 0 -s TOTAL_MEMORY=50331648")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s NO_EXIT_RUNTIME=1 -s WARN_ON_UNDEFINED_SYMBOLS=1 -s FORCE_FILESYSTEM=1 -s USE_LIBPNG=1 --memory-init-file 0 -s TOTAL_MEMORY=50331648")
 	em_link_pre_js(pizouille  ${OXYGINE_JS_LIBRARIES}  ${CMAKE_CURRENT_SOURCE_DIR}/data.js)
 endif(EMSCRIPTEN)
