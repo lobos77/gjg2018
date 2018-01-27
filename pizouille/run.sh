@@ -1,3 +1,3 @@
 make -j4
 mv pizouille res
-res/pizouille
+cd res; ./pizouille; cd ..
