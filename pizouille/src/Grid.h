@@ -14,6 +14,7 @@ public:
 
 protected:
     void _init() override;
+    void onEvent(Event* ev);
     void display();
     void hide();
 
@@ -21,6 +22,8 @@ protected:
 
 private:
     Vector2 region_size;
+    int my_size;
+    bool _pressed;
 };
 
 

@@ -12,10 +12,10 @@
 		<image file="shipengine.png" />
 		<image file="map.png" />
 		<image file="tower.png" />
-
 	</atlas>
 
-    <atlas>
-		<image file="simpleSquare.png"/>
-    </atlas> 
+	<atlas>
+		<image file="simpleSquare.png" />
+		<image file="SelectedSimpleSquare.png" />
+	</atlas>
 </resources>
