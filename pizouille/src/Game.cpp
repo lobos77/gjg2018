@@ -32,6 +32,7 @@ void Game::init()
     _grid->init(this);
     _grid->create(50);
 
+
     //create virtual joystick
     /*_move = new Joystick;
     _move->attachTo(this);

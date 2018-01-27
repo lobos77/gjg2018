@@ -10,6 +10,13 @@ void Player::_init()
 
     _ship = new Sprite;
     _ship->setResAnim(res::ui.getResAnim("ship"));
+
+    ResAnim *resAnim = res::ui.getResAnim("anim");
+    // second parameter is the time between each images
+    // third parameter is the number of loops, -1 is infinite.
+    spTween tween = _ship->addTween(TweenAnim(resAnim), 500, -1);
+    
+
     _ship->attachTo(_view);
     _ship->setAnchor(Vector2(0.5f, 0.5f));
 

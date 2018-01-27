@@ -12,6 +12,7 @@
 		<image file="shipengine.png" />
 		<image file="map.png" />
 		<image file="tower.png" />
+		<image id="anim" file="anim1.png" cols = "8" /> <!-- 'id' is optional -->
 	</atlas>
 
 	<atlas>
