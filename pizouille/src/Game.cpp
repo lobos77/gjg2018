@@ -33,9 +33,10 @@ void Game::init()
     _grid->create(50);
 
     //create virtual joystick
-    _move = new Joystick;
+    /*_move = new Joystick;
     _move->attachTo(this);
     _move->setY(getHeight() - _move->getHeight());
+    //*/
 }
 
 void Game::doUpdate(const UpdateState& us)
