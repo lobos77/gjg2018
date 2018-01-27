@@ -5,5 +5,6 @@ Setup :
 - Use apt-get to install packages (apt-get install package-name-here):
   - libjpeg8-dev zlib1g-dev libpng12-dev
   - freeglut3 (needed only opengl)
+  - libboost-all-dev
   
 git clone https://github.com/oxygine/oxygine-framework.git
