@@ -2,12 +2,12 @@ cmake_minimum_required (VERSION 2.6)
 project (pizouille)
 
 
-add_subdirectory(../oxygine-framework oxygine-framework)
+ADD_SUBDIRECTORY(../oxygine-framework oxygine-framework)
 add_definitions(${OXYGINE_DEFINITIONS})
 include_directories(${OXYGINE_INCLUDE_DIRS})
 link_directories(${OXYGINE_LIBRARY_DIRS})
-execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_SOURCE_DIR}/res
-		${CMAKE_BINARY_DIR}/res)
+execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_SOURCE_DIR}/pizouille/res
+		${CMAKE_BINARY_DIR}/pizouille/res)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OXYGINE_CXX_FLAGS}")
 
