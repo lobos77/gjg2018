@@ -43,7 +43,7 @@ void Joystick::onEvent(Event* ev)
 
     if (te->type == TouchEvent::MOVE)
     {
-        std::cout << "MOVE" << std::endl;
+        //std::cout << "MOVE" << std::endl;
     }
 
     if (te->type == TouchEvent::OVER)
