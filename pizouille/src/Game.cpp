@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Map.h"
 #include "res.h"
+#include "Grid.h"
 
 Game::Game()
 {
@@ -15,24 +16,26 @@ void Game::init()
     setSize(getStage()->getSize());
 
     //create background
-    //spSprite sky = new Sprite;
-    //sky->setResAnim(res::ui.getResAnim("sky"));
-    //sky->attachTo(this);
+    spSprite sky = new Sprite;
+    sky->setResAnim(res::ui.getResAnim("sky"));
+    sky->attachTo(this);
 
-    spSprite map = new Map;
+    //spSprite map = new Map;
     //map->setResAnim(res::ui.getResAnim("map"));
-    map->attachTo(this);
-
-
+    //map->attachTo(this);
 
     //create player ship
-    //_player = new Player;
-    //_player->init(this);
+    _player = new Player;
+    _player->init(this);
+
+    _grid = new Grid;
+    _grid->init(this);
+    _grid->create(50);
 
     //create virtual joystick
-    //_move = new Joystick;
-    //_move->attachTo(this);
-    //_move->setY(getHeight() - _move->getHeight());
+    _move = new Joystick;
+    _move->attachTo(this);
+    _move->setY(getHeight() - _move->getHeight());
 }
 
 void Game::doUpdate(const UpdateState& us)

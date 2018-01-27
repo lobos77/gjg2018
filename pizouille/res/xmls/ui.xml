@@ -14,4 +14,8 @@
 		<image file="tower.png" />
 
 	</atlas>
+
+	<atlas>
+		<image file="simpleSquare.png"/>
+	</atlas>
 </resources>
