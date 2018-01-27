@@ -16,9 +16,9 @@ void Game::init()
     setSize(getStage()->getSize());
 
     //create background
-    spSprite sky = new Sprite;
-    sky->setResAnim(res::ui.getResAnim("sky"));
-    sky->attachTo(this);
+    //spSprite sky = new Sprite;
+    //sky->setResAnim(res::ui.getResAnim("sky"));
+    //sky->attachTo(this);
 
     //spSprite map = new Map;
     //map->setResAnim(res::ui.getResAnim("map"));
