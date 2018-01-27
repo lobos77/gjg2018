@@ -9,7 +9,7 @@ void Player::move_to(int x,int y)
 {
     std::cout << "move to" << x << "," << y << std::endl;
     //spTween tween = _ship->addTween(Actor::TweenPosition(x,y), 5000)
-    _view->setPosition(x,y);
+    //_view->setPosition(x,y);
     spTween tween = _ship->addTween(Actor::TweenPosition(x,y), 5000);
 }
 
@@ -17,7 +17,8 @@ void Player::move_to(int x,int y)
 void Player::_init()
 {
     //initialize player's ship
-    _view->setPosition(_game->getSize() / 2);
+    //_view->setPosition(_game->getSize() / 2);
+    _view->setPosition(Vector2(0,0));
 
 
     _ship = new Sprite;

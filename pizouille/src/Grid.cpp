@@ -53,7 +53,7 @@ void Grid::create(unsigned int size) {
                 std::cout << x << "," << y << std::endl;
                 Player *player = _game->get_player();
 
-                player->move_to(squareSize.length()*y,squareSize.length()*x);
+                player->move_to(squareSize.length()*x,squareSize.length()*y);
 
 
 
