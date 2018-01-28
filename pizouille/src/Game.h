@@ -12,8 +12,9 @@ class Game: public Actor
 {
 public:
     Game();
-    Player * get_player() { return _player;};
+    Player * get_player() { return my_new_player;};
     void init();
+    void create_and_launch_player(float speed);
 
     Vector2 cell_size;
 
@@ -24,9 +25,11 @@ private:
     spJoystick _move;
 
     //spPlayer _player;
-    Player* _player;
+    spPlayer _player;
     spGrid _grid;
-    const std::list<Player*> monster_list;
+    std::list<Player*> monster_list;
+    std::vector<Point> path;
+
 public:
     const std::list<Player *> &getMonster_list() const;
 };
