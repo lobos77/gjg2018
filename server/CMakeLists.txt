@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.9)
 project(server)
 
 set(CMAKE_CXX_STANDARD 11)
+set(Boost_USE_MULTITHREADED      ON)
 
+find_package(Threads REQUIRED)
 find_package( Boost REQUIRED filesystem system thread)
 
 include_directories(
@@ -18,4 +20,4 @@ else()
 endif()
 
 add_executable(server main.cpp)
-target_link_libraries(server ${Boost_LIBRARIES})
+target_link_libraries(server ${Boost_LIBRARIES} Threads::Threads)
