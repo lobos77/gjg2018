@@ -1,6 +1,8 @@
 #pragma once
 #include "oxygine-framework.h"
 #include "Grid.h"
+#include "Playground.h"
+#include "MonsterSelect.h"
 
 using namespace oxygine;
 
@@ -8,6 +10,8 @@ DECLARE_SMART(Player, spPlayer);
 DECLARE_SMART(Joystick, spJoystick);
 DECLARE_SMART(Game, spGame);
 DECLARE_SMART(Grid, spGrid);
+DECLARE_SMART(Playground, spPlayground);
+DECLARE_SMART(MonsterSelect, spMonsterSelect);
 class Game: public Actor
 {
 public:
@@ -21,6 +25,8 @@ public:
     std::list<Player *> & getMonster_list();
 
     Vector2 cell_size;
+    spPlayground _playground;
+    spMonsterSelect _selector;
 
 private:
     Game();

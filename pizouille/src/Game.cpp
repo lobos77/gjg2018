@@ -4,6 +4,7 @@
 #include "Map.h"
 #include "res.h"
 #include "Grid.h"
+#include <iostream>
 
 Game::Game()
 {
@@ -13,6 +14,7 @@ Game::Game()
 void Game::init()
 {
     //scene layer would have size of display
+    Vector2 game_size = getStage()->getSize();
     setSize(getStage()->getSize());
 
     //create background
@@ -23,6 +25,19 @@ void Game::init()
     //spSprite map = new Map;
     //map->setResAnim(res::ui.getResAnim("map"));
     //map->attachTo(this);
+
+    // Create playground
+    _playground = new Playground;
+    _playground->attachTo(this);
+
+    game_size.x-=game_size.x/3;
+    game_size.y-=100;
+    _playground->setSize(game_size);
+
+    _selector = new MonsterSelect;
+    _selector->attachTo(this);
+    _selector->setPosition(_playground->getX()+_playground->getWidth(),0);
+
 
     for(int j = 0; j < 20; j ++){
         path.emplace_back(5+j, 5);
@@ -37,12 +52,19 @@ void Game::init()
         path.emplace_back(5, 25-j);
     }
 
+    std::cout << "path created" << std::endl; 
+
     //create player ship
 
     _grid = new Grid;
+    std::cout << "grid object initialized" << std::endl; 
     _grid->init(this);
+    std::cout << "grid initialized" << std::endl; 
     _grid->create(50);
+    std::cout << "grid created" << std::endl; 
     _grid->create_path(path);
+    std::cout << "grid path created" << std::endl; 
+    
 
     cell_size = _grid->getSquareSize();
 

@@ -43,7 +43,7 @@ void MonsterSelect::onEvent(Event* ev)
     if(te->type == TouchEvent::CLICK)
     {
         std::cout << "CLICK" << std::endl;
-        spTower tower = new Tower();
+        //spTower tower = new Tower();
         //tower->attachTo(this);
         //tower->setPosition(te->localPosition);
         //tower->setVisible(true);
