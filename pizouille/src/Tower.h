@@ -12,14 +12,16 @@ using namespace oxygine;
 DECLARE_SMART(Tower, spTower);
 class Tower : public Sprite {
 public:
-    Tower();
+    Tower(Vector2 pos);
     void build();
     void doUpdate(const UpdateState &us);
     void onClick();
 
 private:
     bool built = false;
-
+    Vector2 position;
+    unsigned int range = 200;
+    unsigned int attack_speed = 500;
 };
 
 

@@ -74,7 +74,7 @@ void Game::doUpdate(const UpdateState& us)
     }
 }
 
-const std::list<Player *> &Game::getMonster_list() const {
+std::list<Player *> & Game::getMonster_list() {
     return monster_list;
 }
 
