@@ -5,7 +5,7 @@ DECLARE_SMART(Player, spPlayer);
 class Player: public Unit
 {
 public:
-
+    void move_to(int x,int y);
 
 protected:
     void _init();
