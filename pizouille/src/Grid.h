@@ -6,12 +6,14 @@
 #define PROJECT_GRID_H
 
 #include "Unit.h"
+#include "Tower.h"
 
 class Grid: public Unit
 {
 public:
     void create(unsigned int tiles_nb);
     void create_path(std::vector<Point> points);
+    const std::vector<std::vector<spTower>> &getCells() const;
 
     const Vector2 &getSquareSize() const;
 
@@ -21,9 +23,9 @@ protected:
     void display();
     void hide();
 
-    std::vector<std::vector<spSprite>>  cells;
-
 private:
+    spSprite activeCell;
+    std::vector<std::vector<spTower>> cells;
     Vector2 region_size;
     int square_nb;
     bool _pressed;

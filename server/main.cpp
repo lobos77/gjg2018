@@ -1,6 +1,7 @@
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
 #include <boost/lexical_cast.hpp>
+#include "tcp_server.h"
 
 boost::mutex global_stream_lock;
 
@@ -52,6 +53,15 @@ void OnAccept( const boost::system::error_code & ec, boost::shared_ptr< boost::a
         global_stream_lock.lock();
         std::cout << "[" << getThreadId() << "] Accepted!" << std::endl;
         global_stream_lock.unlock();
+
+        std::string input = "coucou";
+        for (int i = 0; i < 4; ++i) {
+            boost::asio::write(*sock, boost::asio::buffer(input));
+        }
+        do {
+            boost::asio::write(*sock, boost::asio::buffer(input));
+            std::cin >> input;
+        } while (input != "exit");
     }
 }
 
@@ -72,6 +82,15 @@ void OnConnect( const boost::system::error_code & ec, boost::shared_ptr< boost::
 }
 
 int main(int argc, char *argv[]) {
+
+    boost::asio::io_service io_service;
+    using namespace std; // For atoi.
+    tcp::endpoint endpoint(tcp::v4(), 7777);
+    chat_server_ptr server(new chat_server(io_service, endpoint));
+    io_service.run();
+
+    return 0;
+    /*
     boost::shared_ptr<boost::asio::io_service> io_service(
             new boost::asio::io_service
     );
@@ -103,7 +122,7 @@ int main(int argc, char *argv[]) {
     try {
         boost::asio::ip::tcp::resolver resolver( *io_service );
         boost::asio::ip::tcp::resolver::query query(
-                "127.0.0.1",
+                "0.0.0.0",
                 boost::lexical_cast< std::string >( 7777 )
         );
         boost::asio::ip::tcp::endpoint endpoint = *resolver.resolve( query );
@@ -134,4 +153,5 @@ int main(int argc, char *argv[]) {
     worker_threads.join_all();
 
     return 0;
+    //*/
 }
