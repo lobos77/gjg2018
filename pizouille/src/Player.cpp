@@ -23,6 +23,7 @@ void Player::_init()
 
     _ship = new Sprite;
     _ship->setResAnim(res::ui.getResAnim("ship"));
+    _ship->setPriority(1000);
 
 
     ResAnim *resAnim = res::ui.getResAnim("anim");
@@ -32,7 +33,6 @@ void Player::_init()
     // two tweens : one moving from 400 to 300
     // the other animating the sprite.
     spTween tween1 = _ship->addTween(TweenAnim(resAnim), 500, -1);
-
 
     _ship->attachTo(_view);
     _ship->setAnchor(Vector2(0.5f, 0.5f));
