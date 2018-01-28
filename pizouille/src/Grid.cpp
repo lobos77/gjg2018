@@ -6,13 +6,15 @@
 #include "Grid.h"
 #include "res.h"
 #include "Game.h"
+#include "Playground.h"
 #include "Player.h"
 #include "oxygine-framework.h"
 #include <iostream>
 
 void Grid::_init() {
     _view->setPosition(0, 0);
-    region_size = _game->getSize();
+    region_size = _game->_playground->getSize();
+    //region_size = _game->getSize();
     square_nb = 0;
 }
 
@@ -39,12 +41,13 @@ void Grid::create(unsigned int tiles_nb) {
 
     for (int x = 0; x < tiles_nb; x++) {
         for (int y = 0; y < tiles_nb; y++) {
-            cells[x].push_back(new Tower(Vector2(x*squareSize.x, y*squareSize.y)));
+            cells[x].push_back(new Tower);
             spTower cell =cells[x][y];
             cell->setScale(scaleFactor);
             cell->setResAnim(myAnim);
-            cell->attachTo(_view);
-            cell->setPosition(Vector2(float(x * 20), float(y * 20)));
+            //cell->attachTo(_view);
+            cell->attachTo(_game->_playground);
+            cell->setPosition(Vector2(float(x * squareSize.x), float(y * squareSize.y)));
             cell->setAlpha(50);
             cell->setPriority(1);
             cell->addEventListener(TouchEvent::MOVE, [cell, this](Event*){

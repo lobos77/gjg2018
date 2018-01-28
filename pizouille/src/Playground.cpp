@@ -3,3 +3,14 @@
 //
 
 #include "Playground.h"
+
+Playground::Playground()
+{
+
+}
+
+void Playground::init()
+{
+
+
+}
