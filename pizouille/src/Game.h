@@ -19,7 +19,6 @@ private:
     friend class Player;
     void doUpdate(const UpdateState& us);
 
-
     spJoystick _move;
 
     //spPlayer _player;

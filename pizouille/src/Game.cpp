@@ -60,4 +60,10 @@ void Game::doUpdate(const UpdateState& us)
 
     //update player each frame
     //_player->update(us);
+
+    for (const std::vector<spTower> & towerRow : _grid->getCells()) {
+        for (const spTower & tower : towerRow) {
+            tower->doUpdate(us);
+        }
+    }
 }

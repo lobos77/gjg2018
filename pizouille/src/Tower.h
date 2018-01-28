@@ -13,6 +13,13 @@ DECLARE_SMART(Tower, spTower);
 class Tower : public Sprite {
 public:
     Tower();
+    void build();
+    void doUpdate(const UpdateState &us);
+    void onClick();
+
+private:
+    bool built = false;
+
 };
 
 
