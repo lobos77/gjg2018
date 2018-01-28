@@ -23,7 +23,7 @@ void Player::_init()
 
     _ship = new Sprite;
     _ship->setResAnim(res::ui.getResAnim("ship"));
-    _ship->setPriority(1000);
+    _ship->setPriority(100);
 
 
     ResAnim *resAnim = res::ui.getResAnim("anim");

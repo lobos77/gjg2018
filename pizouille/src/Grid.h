@@ -10,7 +10,7 @@
 class Grid: public Unit
 {
 public:
-    void create(unsigned int size);
+    void create(unsigned int tiles_nb);
     void create_path(std::vector<Point> points);
 
 protected:
@@ -23,7 +23,7 @@ protected:
 
 private:
     Vector2 region_size;
-    int my_size;
+    int square_nb;
     bool _pressed;
     Vector2 squareSize;
 };
