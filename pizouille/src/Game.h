@@ -16,7 +16,6 @@ public:
         return instance;
     }
 
-    Player * get_player() { return my_new_player;};
     void init();
     void create_and_launch_player(float speed);
     std::list<Player *> & getMonster_list();
@@ -30,7 +29,6 @@ private:
     void doUpdate(const UpdateState& us);
 
     spJoystick _move;
-    //spPlayer _player;
     spPlayer _player;
     spGrid _grid;
     std::list<Player*> monster_list;
