@@ -15,6 +15,8 @@ public:
     Player * get_player() { return _player;};
     void init();
 
+    Vector2 cell_size;
+
 private:
     friend class Player;
     void doUpdate(const UpdateState& us);

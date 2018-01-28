@@ -45,6 +45,10 @@ void Game::init()
     _grid->create(50);
     _grid->create_path(path);
 
+    cell_size = _grid->getSquareSize();
+
+    _player->follow_path(path);
+
 
     //create virtual joystick
     /*_move = new Joystick;
@@ -59,5 +63,5 @@ void Game::doUpdate(const UpdateState& us)
     //it is being called each frame
 
     //update player each frame
-    //_player->update(us);
+    _player->update(us);
 }

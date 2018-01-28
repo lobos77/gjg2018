@@ -6,6 +6,7 @@ class Player: public Unit
 {
 public:
     void move_to(int x,int y);
+    void follow_path(std::vector<Point> path);
 
 protected:
     void _init();
@@ -13,4 +14,9 @@ protected:
 
     spSprite _engine;
     spSprite _ship;
+    bool following_path;
+    std::vector<Point> path;
+    Vector2 dir;
+    int step;
+    float speed;
 };

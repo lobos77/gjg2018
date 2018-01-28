@@ -16,6 +16,10 @@ void Grid::_init() {
     square_nb = 0;
 }
 
+const Vector2 &Grid::getSquareSize() const {
+    return squareSize;
+}
+
 void Grid::create(unsigned int tiles_nb) {
 
     square_nb = tiles_nb;
@@ -55,7 +59,6 @@ void Grid::create(unsigned int tiles_nb) {
             cell->addEventListener(TouchEvent::CLICK, [cell, this,x,y,tiles_nb](Event*){
                 static spSprite old_pix = nullptr;
                 static const ResAnim * old_anim;
-                //std::cout << "MOVE" << std::endl;
 
                 std::cout << x << "," << y << std::endl;
                 Player *player = _game->get_player();

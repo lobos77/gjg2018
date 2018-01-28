@@ -3,16 +3,27 @@
 #include "res.h"
 #include "Joystick.h"
 #include <iostream>
+#include <utility>
 
 
 void Player::move_to(int x,int y)
 {
-    std::cout << "move to" << x << "," << y << std::endl;
+    std::cout << "move to " << x << ", " << y << std::endl;
     //spTween tween = _ship->addTween(Actor::TweenPosition(x,y), 5000)
     //_view->setPosition(x,y);
     spTween tween = _ship->addTween(Actor::TweenPosition(x,y), 5000);
 }
 
+void Player::follow_path(std::vector<Point> path){
+    this->path = std::move(path);
+    this->step = 0;
+    following_path = true;
+    Vector2 pos = _view->getPosition();
+    float norm = (pos.distance(this->path[step]))/_game->cell_size.x;
+    //auto norm = (float)sqrt(pow((this->path[step].x - pos.x), 2) + pow((this->path[step].y - pos.y), 2));
+    dir = Vector2((this->path[step].x-pos.x)/norm, (this->path[step].y-pos.y)/norm);
+    speed = 5;
+}
 
 void Player::_init()
 {
@@ -49,21 +60,31 @@ void Player::_init()
 
 void Player::_update(const UpdateState& us)
 {
-    _engine->setVisible(false);
-
-    Vector2 dir;
-    if (_game->_move->getDirection(dir))
-    {
-        //update player position according to delta time and finger direction from virtual joystick
+    if(following_path) {
         Vector2 pos = _view->getPosition();
-        pos = pos + dir * (us.dt / 1000.0f) * 5;
+        if( (pos + dir*speed).x >= path[step].x*_game->cell_size.x && dir.x > 0  ||
+            (pos - dir*speed).x >= path[step].x*_game->cell_size.x && dir.x < 0){
+            pos.x = path[step].x*_game->cell_size.x;
+        }else{
+            pos.x += dir.x*speed;
+        }
+        if( dir.y > 0 && (pos + dir*speed).y >= path[step].y*_game->cell_size.y ||
+            (pos - dir*speed).y >= path[step].y*_game->cell_size.y && dir.y < 0){
+            pos.y = path[step].y*_game->cell_size.y;
+        }else{
+            pos.y += dir.y*speed;
+        }
+
+        if(pos == Vector2(path[step].x*_game->cell_size.x, path[step].y*_game->cell_size.y)){
+            if(step == path.size()-1){
+                following_path = false;
+            }else {
+                step++;
+                float norm = (pos.distance(this->path[step]));
+                dir = Vector2((path[step].x*_game->cell_size.x-pos.x)/norm, (path[step].y*_game->cell_size.y-pos.y)/norm);
+                Vector2 tmp = dir;
+            }
+        }
         _view->setPosition(pos);
-
-        //rotate it
-        float angle = atan2f(dir.y, dir.x);
-        _view->setRotation(angle);
-
-        //if player moves show engine's fire
-        _engine->setVisible(true);
     }
 }

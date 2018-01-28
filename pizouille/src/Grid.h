@@ -13,6 +13,8 @@ public:
     void create(unsigned int tiles_nb);
     void create_path(std::vector<Point> points);
 
+    const Vector2 &getSquareSize() const;
+
 protected:
     void _init() override;
     void onEvent(Event* ev);
