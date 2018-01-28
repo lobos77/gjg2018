@@ -19,51 +19,54 @@ void Grid::_init() {
 void Grid::create(unsigned int size) {
 
     my_size = size;
-    Vector2 squareSize = region_size/size;
+    squareSize = region_size/size;
     cells.resize(size);
+    const ResAnim * myAnim = res::ui.getResAnim("simpleSquare");
+
     for (int x = 0; x < size; x++) {
         for (int y = 0; y < size; y++) {
             cells[x].push_back(new Sprite);
             spSprite cell =cells[x][y];
-            cell->setScale(1.0f/squareSize.x);
-            cell->setResAnim(res::ui.getResAnim("simpleSquare"));
+            cell->setScale(1.2f/squareSize.x);
+            cell->setResAnim(myAnim);
             cell->attachTo(_view);
             cell->setPosition(Vector2(float(x * 20), float(y * 20)));
             cell->setAlpha(50);
+            cell->setPriority(1);
             cell->addEventListener(TouchEvent::MOVE, [cell, this](Event*){
                 static spSprite old_pix = nullptr;
+                static const ResAnim * old_anim;
                 //std::cout << "MOVE" << std::endl;
-                Vector2 squareSize = region_size/my_size;
 
                 if(old_pix != NULL){
-                    old_pix->setScale(1.0f/squareSize.x);
-                    old_pix->setResAnim(res::ui.getResAnim("simpleSquare"));
+                    old_pix->setScale(old_anim->getScaleFactor());
+                    old_pix->setResAnim(old_anim);
                 }
-                cell->setScale(1.0f/squareSize.x);
-                cell->setResAnim(res::ui.getResAnim("SelectedSimpleSquare"));
                 old_pix = cell;
+                old_anim = cell->getResAnim();
+                cell->setScale(1.2f/squareSize.x);
+                cell->setResAnim(res::ui.getResAnim("SelectedSimpleSquare"));
             });
 
             // event listener in case of click
             cell->addEventListener(TouchEvent::CLICK, [cell, this,x,y,size](Event*){
                 static spSprite old_pix = nullptr;
+                static const ResAnim * old_anim;
                 //std::cout << "MOVE" << std::endl;
-                Vector2 squareSize = region_size/my_size;
 
                 std::cout << x << "," << y << std::endl;
                 Player *player = _game->get_player();
 
                 player->move_to(squareSize.length()*x,squareSize.length()*y);
 
-
-
                 if(old_pix != NULL){
                     old_pix->setScale(1.0f/squareSize.x);
-                    old_pix->setResAnim(res::ui.getResAnim("simpleSquare"));
+                    old_pix->setResAnim(old_anim);
                 }
+                old_pix = cell;
+                old_anim = cell->getResAnim();
                 cell->setScale(1.0f/squareSize.x);
                 cell->setResAnim(res::ui.getResAnim("SelectedSimpleSquare"));
-                old_pix = cell;
             });//*/
         }
     }
@@ -78,7 +81,6 @@ void Grid::onEvent(Event* ev)
     {
         static spSprite old_pix = nullptr;
         //std::cout << "MOVE" << std::endl;
-        Vector2 squareSize = region_size/my_size;
 
         if(old_pix != NULL){
             old_pix->setScale(1.0f/squareSize.x);
@@ -91,5 +93,17 @@ void Grid::onEvent(Event* ev)
     if(te->type == TouchEvent::CLICK)
     {
 
+    }
+}
+
+void Grid::create_path(std::vector<Point> points) {
+    const ResAnim * myAnim = res::ui.getResAnim("tiled");
+    float scale = myAnim->getSize().x/my_size*region_size.x;
+
+    for (auto &point : points) {
+        spSprite cell = cells[point.y][point.x];
+        cell->setScale(scale);
+        cell->setResAnim(myAnim);
+        cell->setAlpha(100);
     }
 }
