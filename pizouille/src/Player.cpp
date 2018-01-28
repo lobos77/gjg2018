@@ -2,14 +2,38 @@
 #include "Game.h"
 #include "res.h"
 #include "Joystick.h"
+#include <iostream>
+
+
+void Player::move_to(int x,int y)
+{
+    std::cout << "move to" << x << "," << y << std::endl;
+    //spTween tween = _ship->addTween(Actor::TweenPosition(x,y), 5000)
+    //_view->setPosition(x,y);
+    spTween tween = _ship->addTween(Actor::TweenPosition(x,y), 5000);
+}
+
 
 void Player::_init()
 {
     //initialize player's ship
-    _view->setPosition(_game->getSize() / 2);
+    //_view->setPosition(_game->getSize() / 2);
+    _view->setPosition(Vector2(0,0));
+
 
     _ship = new Sprite;
     _ship->setResAnim(res::ui.getResAnim("ship"));
+    _ship->setPriority(100);
+
+
+    ResAnim *resAnim = res::ui.getResAnim("anim");
+    // second parameter is the time between each images
+    // third parameter is the number of loops, -1 is infinite.
+
+    // two tweens : one moving from 400 to 300
+    // the other animating the sprite.
+    spTween tween1 = _ship->addTween(TweenAnim(resAnim), 500, -1);
+
     _ship->attachTo(_view);
     _ship->setAnchor(Vector2(0.5f, 0.5f));
 
