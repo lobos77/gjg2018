@@ -10,6 +10,8 @@ public:
 
     void setSpeed(float speed);
 
+    const Vector2 &getPos() const;
+
 protected:
     void _init();
     void _update(const UpdateState& us);
@@ -21,4 +23,5 @@ protected:
     Vector2 dir;
     int step;
     float speed;
+    Vector2 pos;
 };

@@ -49,6 +49,7 @@ void Player::_init()
     // the other animating the sprite.
     spTween tween1 = _ship->addTween(TweenAnim(resAnim), 500, -1);
 
+    _ship->setAlpha(100);
     _ship->attachTo(_view);
     _ship->setAnchor(Vector2(0.5f, 0.5f));
 
@@ -64,8 +65,9 @@ void Player::_init()
 
 void Player::_update(const UpdateState& us)
 {
+
+    pos = _view->getPosition();
     if(following_path) {
-        Vector2 pos = _view->getPosition();
         if( (pos + dir*speed).x >= path[step].x*_game->cell_size.x && dir.x > 0  ||
             (pos - dir*speed).x <= path[step].x*_game->cell_size.x && dir.x < 0){
             pos.x = path[step].x*_game->cell_size.x;
@@ -91,4 +93,8 @@ void Player::_update(const UpdateState& us)
         }
         _view->setPosition(pos);
     }
+}
+
+const Vector2 &Player::getPos() const {
+    return pos;
 }
