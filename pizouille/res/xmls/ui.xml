@@ -19,5 +19,6 @@
 		<image file="simpleSquare.png" />
 		<image file="SelectedSimpleSquare.png" />
 		<image file="tiled.png" />
+		<image file="tiled2.png" />
 	</atlas>
 </resources>
