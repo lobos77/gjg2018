@@ -20,7 +20,7 @@ public:
 private:
     bool built = false;
     Vector2 position;
-    unsigned int range = 200;
+    unsigned int range = 20;
     unsigned int attack_speed = 500;
 };
 
