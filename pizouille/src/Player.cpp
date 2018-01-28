@@ -22,7 +22,10 @@ void Player::follow_path(std::vector<Point> path){
     float norm = (pos.distance(this->path[step]))/_game->cell_size.x;
     //auto norm = (float)sqrt(pow((this->path[step].x - pos.x), 2) + pow((this->path[step].y - pos.y), 2));
     dir = Vector2((this->path[step].x-pos.x)/norm, (this->path[step].y-pos.y)/norm);
-    speed = 5;
+}
+
+void Player::setSpeed(float speed) {
+    Player::speed = speed;
 }
 
 void Player::_init()
@@ -31,6 +34,7 @@ void Player::_init()
     //_view->setPosition(_game->getSize() / 2);
     _view->setPosition(Vector2(0,0));
 
+    speed = 0;
 
     _ship = new Sprite;
     _ship->setResAnim(res::ui.getResAnim("ship"));
@@ -63,13 +67,13 @@ void Player::_update(const UpdateState& us)
     if(following_path) {
         Vector2 pos = _view->getPosition();
         if( (pos + dir*speed).x >= path[step].x*_game->cell_size.x && dir.x > 0  ||
-            (pos - dir*speed).x >= path[step].x*_game->cell_size.x && dir.x < 0){
+            (pos - dir*speed).x <= path[step].x*_game->cell_size.x && dir.x < 0){
             pos.x = path[step].x*_game->cell_size.x;
         }else{
             pos.x += dir.x*speed;
         }
         if( dir.y > 0 && (pos + dir*speed).y >= path[step].y*_game->cell_size.y ||
-            (pos - dir*speed).y >= path[step].y*_game->cell_size.y && dir.y < 0){
+            (pos - dir*speed).y <= path[step].y*_game->cell_size.y && dir.y < 0){
             pos.y = path[step].y*_game->cell_size.y;
         }else{
             pos.y += dir.y*speed;

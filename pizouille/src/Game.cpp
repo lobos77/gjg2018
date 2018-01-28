@@ -25,15 +25,17 @@ void Game::init()
     //map->attachTo(this);
 
     std::vector<Point> path;
-    for(int i = 0; i < 2; i++){
-        for(int j = 0; j < 20; j ++){
-            path.emplace_back(5+j, 5+i*20);
-        }
+    for(int j = 0; j < 20; j ++){
+        path.emplace_back(5+j, 5);
     }
-    for(int i = 0; i < 2; i++){
-        for(int j = 0; j < 20; j ++){
-            path.emplace_back(5+i*20, 5+j);
-        }
+    for(int j = 0; j <= 20; j ++){
+        path.emplace_back(25, 5+j);
+    }
+    for(int j = 0; j < 20; j ++){
+        path.emplace_back(25-j, 25);
+    }
+    for(int j = 0; j < 20; j ++){
+        path.emplace_back(5, 25-j);
     }
 
     //create player ship
@@ -48,6 +50,7 @@ void Game::init()
     cell_size = _grid->getSquareSize();
 
     _player->follow_path(path);
+    _player->setSpeed(15);
 
 
     //create virtual joystick

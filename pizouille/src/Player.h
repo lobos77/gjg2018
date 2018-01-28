@@ -8,6 +8,8 @@ public:
     void move_to(int x,int y);
     void follow_path(std::vector<Point> path);
 
+    void setSpeed(float speed);
+
 protected:
     void _init();
     void _update(const UpdateState& us);
