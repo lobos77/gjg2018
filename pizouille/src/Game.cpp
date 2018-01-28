@@ -39,8 +39,6 @@ void Game::init()
     }
 
     //create player ship
-    _player = new Player;
-    _player->init(this);
 
     _grid = new Grid;
     _grid->init(this);
@@ -49,6 +47,8 @@ void Game::init()
 
     cell_size = _grid->getSquareSize();
 
+    _player = new Player;
+    _player->init(this);
     _player->follow_path(path);
     _player->setSpeed(15);
 
@@ -73,4 +73,8 @@ void Game::doUpdate(const UpdateState& us)
             tower->doUpdate(us);
         }
     }
+}
+
+const std::list<Player *> &Game::getMonster_list() const {
+    return monster_list;
 }

@@ -26,4 +26,7 @@ private:
     //spPlayer _player;
     Player* _player;
     spGrid _grid;
+    const std::list<Player*> monster_list;
+public:
+    const std::list<Player *> &getMonster_list() const;
 };
