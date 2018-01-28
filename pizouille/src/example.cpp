@@ -13,7 +13,7 @@ void example_init()
     res::load();
 
     //create scene with game
-    spGame game = new Game;
+    spGame game = Game::getInstance();
     game->init();
     game->attachTo(getStage());
 }

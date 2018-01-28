@@ -24,7 +24,6 @@ void Game::init()
     //map->setResAnim(res::ui.getResAnim("map"));
     //map->attachTo(this);
 
-    std::vector<Point> path;
     for(int j = 0; j < 20; j ++){
         path.emplace_back(5+j, 5);
     }
@@ -47,11 +46,7 @@ void Game::init()
 
     cell_size = _grid->getSquareSize();
 
-    _player = new Player;
-    _player->init(this);
-    _player->follow_path(path);
-    _player->setSpeed(15);
-
+    create_and_launch_player(15);
 
     //create virtual joystick
     /*_move = new Joystick;
@@ -66,7 +61,11 @@ void Game::doUpdate(const UpdateState& us)
     //it is being called each frame
 
     //update player each frame
-    _player->update(us);
+    //_player->update(us);
+
+    for(Player* monster : monster_list) {
+        monster->update(us);
+    }
 
     for (const std::vector<spTower> & towerRow : _grid->getCells()) {
         for (const spTower & tower : towerRow) {
@@ -75,6 +74,15 @@ void Game::doUpdate(const UpdateState& us)
     }
 }
 
-const std::list<Player *> &Game::getMonster_list() const {
+std::list<Player *> & Game::getMonster_list() {
     return monster_list;
+}
+
+void Game::create_and_launch_player(float speed) {
+    auto * my_new_player = new Player;
+    my_new_player->init(this);
+    my_new_player->follow_path(path);
+    my_new_player->setSpeed(speed);
+
+    monster_list.push_back(my_new_player);
 }

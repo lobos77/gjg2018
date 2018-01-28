@@ -11,22 +11,26 @@ DECLARE_SMART(Grid, spGrid);
 class Game: public Actor
 {
 public:
-    Game();
-    Player * get_player() { return _player;};
+    static const spGame getInstance() {
+        static spGame instance = new Game;
+        return instance;
+    }
+
     void init();
+    void create_and_launch_player(float speed);
+    std::list<Player *> & getMonster_list();
 
     Vector2 cell_size;
 
 private:
+    Game();
     friend class Player;
+
     void doUpdate(const UpdateState& us);
 
     spJoystick _move;
-
-    //spPlayer _player;
-    Player* _player;
+    spPlayer _player;
     spGrid _grid;
-    const std::list<Player*> monster_list;
-public:
-    const std::list<Player *> &getMonster_list() const;
+    std::list<Player*> monster_list;
+    std::vector<Point> path;
 };
