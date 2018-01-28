@@ -19,5 +19,5 @@ else()
     message(STATUS "Boost_VERSION: ${Boost_VERSION}")
 endif()
 
-add_executable(server main.cpp)
+add_executable(server main.cpp tcp_connection.cpp tcp_connection.h chat_message.hpp tcp_server.cpp tcp_server.h chat_room.cpp chat_room.h chat_participant.cpp chat_participant.h)
 target_link_libraries(server ${Boost_LIBRARIES} Threads::Threads)
