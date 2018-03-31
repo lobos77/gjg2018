@@ -9,6 +9,7 @@ public:
     void follow_path(std::vector<Point> path);
 
     void setSpeed(float speed);
+    void shoot(int ammoType);
 
     const Vector2 &getPos() const;
 
@@ -22,6 +23,7 @@ protected:
     std::vector<Point> path;
     Vector2 dir;
     int step;
+    int lifePoint = 100;
     float speed;
     Vector2 pos;
 };

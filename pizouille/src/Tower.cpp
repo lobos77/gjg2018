@@ -51,8 +51,7 @@ void Tower::doUpdate(const UpdateState& us) {
 
             if(min_distance <= range) {
                 lastAttack = us.time;
-                game->getMonster_list().remove(target);
-                delete target;
+                target->shoot(10);
             }
         }
     }

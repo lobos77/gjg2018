@@ -98,3 +98,13 @@ void Player::_update(const UpdateState& us)
 const Vector2 &Player::getPos() const {
     return pos;
 }
+
+void Player::shoot(int ammoType){
+    lifePoint -= ammoType;
+    if(lifePoint <= 0){
+		spGame game = Game::getInstance();
+		game->getMonster_list().remove(this);
+		_ship->setVisible(false);
+		delete this;
+    }
+}
