@@ -41,7 +41,7 @@ void Grid::create(unsigned int tiles_nb) {
 
     for (int x = 0; x < tiles_nb; x++) {
         for (int y = 0; y < tiles_nb; y++) {
-            cells[x].push_back(new Tower);
+            cells[x].push_back(new Tower(Vector2((x * squareSize.x), (y * squareSize.y))));
             spTower cell =cells[x][y];
             cell->setScale(scaleFactor);
             cell->setResAnim(myAnim);
