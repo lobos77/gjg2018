@@ -28,6 +28,8 @@ void Tower::build() {
 void Tower::onClick() {
     if(!built) {
         build();
+    }else{
+    	power += 10;
     }
 }
 
@@ -51,7 +53,7 @@ void Tower::doUpdate(const UpdateState& us) {
 
             if(min_distance <= range) {
                 lastAttack = us.time;
-                target->shoot(10);
+                target->shoot(power);
             }
         }
     }

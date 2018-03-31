@@ -23,6 +23,7 @@ private:
     Vector2 position;
     unsigned int range = 20;
     unsigned int attack_speed = 500;
+    unsigned int power = 10;
 };
 
 
