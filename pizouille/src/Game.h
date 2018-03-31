@@ -3,6 +3,7 @@
 #include "Grid.h"
 #include "Playground.h"
 #include "MonsterSelect.h"
+#include "Player.h"
 
 using namespace oxygine;
 
@@ -41,4 +42,5 @@ private:
     spGrid _grid;
     std::list<Monster*> monster_list;
     std::vector<Point> path;
+	std::vector<Monster*> monsterGarbage;
 };

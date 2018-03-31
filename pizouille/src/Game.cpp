@@ -56,6 +56,9 @@ void Game::init()
 
     //create player ship
 
+    _player = new Player;
+    _player->init(this);
+
     _grid = new Grid;
     std::cout << "grid object initialized" << std::endl; 
     _grid->init(this);
@@ -94,6 +97,15 @@ void Game::doUpdate(const UpdateState& us)
             tower->doUpdate(us);
         }
     }
+
+    while(!monsterGarbage.empty()){
+        auto dead = monsterGarbage[monsterGarbage.size()-1];
+		createAndLaunchMonster(50);
+		createAndLaunchMonster(50);
+		monster_list.remove(dead);
+        monsterGarbage.pop_back();
+    	delete dead;
+    }
 }
 
 std::list<Monster *> & Game::getMonster_list() {
@@ -110,5 +122,10 @@ void Game::createAndLaunchMonster(float speed) {
     monster_list.push_back(myMonster);
 }
 
-    monster_list.push_back(my_new_player);
+spPlayer Game::getMainPlayer() {
+    return _player;
+}
+
+std::vector<Monster *> &Game::getMonsterGarbage() {
+	return monsterGarbage;
 }
