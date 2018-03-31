@@ -11,7 +11,7 @@ using namespace oxygine;
 
 
 #include "Tower.h"
-#include "Player.h"
+#include "Monster.h"
 #include "Game.h"
 
 Tower::Tower(Vector2 pos) : position(pos) {
@@ -38,10 +38,10 @@ void Tower::doUpdate(const UpdateState& us) {
         if (lastAttack - us.time >= attack_speed) {
             unsigned int min_distance = UINT_MAX;
             unsigned int distance;
-            Player* target = nullptr;
+            Monster* target = nullptr;
 
             spGame game = Game::getInstance();
-            for(Player *const & player : game->getMonster_list()) {
+            for(Monster *const & player : game->getMonster_list()) {
                 distance = static_cast<unsigned int>(position.distance(player->getPos()));
                 if(distance < min_distance) {
                     min_distance = distance;

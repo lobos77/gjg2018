@@ -7,7 +7,7 @@
 #include "res.h"
 #include "Game.h"
 #include "Playground.h"
-#include "Player.h"
+#include "Monster.h"
 #include "oxygine-framework.h"
 #include <iostream>
 

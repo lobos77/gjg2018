@@ -6,7 +6,7 @@
 
 using namespace oxygine;
 
-DECLARE_SMART(Player, spPlayer);
+DECLARE_SMART(Monster, spMonster);
 DECLARE_SMART(Joystick, spJoystick);
 DECLARE_SMART(Game, spGame);
 DECLARE_SMART(Grid, spGrid);
@@ -21,10 +21,12 @@ public:
     }
 
     void init();
-    void create_and_launch_player(float speed);
-    std::list<Player *> & getMonster_list();
+    void createAndLaunchMonster(float speed);
+    std::list<Monster *> & getMonster_list();
+	spPlayer getMainPlayer();
+	std::vector<Monster *> &getMonsterGarbage();
 
-    Vector2 cell_size;
+	Vector2 cell_size;
     spPlayground _playground;
     spMonsterSelect _selector;
 
@@ -37,6 +39,6 @@ private:
     spJoystick _move;
     spPlayer _player;
     spGrid _grid;
-    std::list<Player*> monster_list;
+    std::list<Monster*> monster_list;
     std::vector<Point> path;
 };

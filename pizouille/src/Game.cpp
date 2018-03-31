@@ -1,6 +1,6 @@
 #include "Game.h"
 #include "Joystick.h"
-#include "Player.h"
+#include "Monster.h"
 #include "Map.h"
 #include "res.h"
 #include "Grid.h"
@@ -68,7 +68,7 @@ void Game::init()
 
     cell_size = _grid->getSquareSize();
 
-    create_and_launch_player(15);
+    createAndLaunchMonster(15);
 
     //create virtual joystick
     /*_move = new Joystick;
@@ -85,7 +85,7 @@ void Game::doUpdate(const UpdateState& us)
     //update player each frame
     //_player->update(us);
 
-    for(Player* monster : monster_list) {
+    for(Monster* monster : monster_list) {
         monster->update(us);
     }
 
@@ -96,15 +96,19 @@ void Game::doUpdate(const UpdateState& us)
     }
 }
 
-std::list<Player *> & Game::getMonster_list() {
+std::list<Monster *> & Game::getMonster_list() {
     return monster_list;
 }
 
-void Game::create_and_launch_player(float speed) {
-    auto * my_new_player = new Player;
-    my_new_player->init(this);
-    my_new_player->follow_path(path);
-    my_new_player->setSpeed(speed);
+void Game::createAndLaunchMonster(float speed) {
+    auto * myMonster = new Monster;
+    myMonster->init(this);
+    myMonster->follow_path(path);
+    myMonster->setSpeed(speed);
+    myMonster->setMonsterType(1);
+
+    monster_list.push_back(myMonster);
+}
 
     monster_list.push_back(my_new_player);
 }
