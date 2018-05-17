@@ -14,7 +14,6 @@ MonsterSelect::MonsterSelect(): _pressed(false)
     //setAlpha(100);
     setScale(0.3);
 
-    setResAnim(res::ui.getResAnim("carte_insecte"));
     addEventListener(TouchEvent::MOVE, CLOSURE(this, &MonsterSelect::onEvent));
     addEventListener(TouchEvent::CLICK, CLOSURE(this, &MonsterSelect::onEvent));
     addEventListener(TouchEvent::OVER, CLOSURE(this, &MonsterSelect::onEvent));
@@ -49,13 +48,15 @@ void MonsterSelect::onEvent(Event* ev)
     }
     if(te->type == TouchEvent::CLICK)
     {
-        std::cout << "CLICK" << std::endl;
-        //spTower tower = new Tower();
-        //tower->attachTo(this);
-        //tower->setPosition(te->localPosition);
-        //tower->setVisible(true);
-
-
+        selected = !selected;
     }
 
+}
+
+bool MonsterSelect::isSelected() {
+    return selected;
+}
+
+void MonsterSelect::setAnim(std::string myCardName) {
+    setResAnim(res::ui.getResAnim(myCardName));
 }

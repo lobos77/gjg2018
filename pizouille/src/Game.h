@@ -30,12 +30,14 @@ public:
 	Vector2 cell_size;
     spPlayground _playground;
     spMonsterSelect _selector;
+    spMonsterSelect _selector2;
+    spMonsterSelect _selector3;
 
 private:
     Game();
     friend class Player;
 
-    void doUpdate(const UpdateState& us);
+    void doUpdate(const UpdateState& us) override;
 
     spJoystick _move;
     spPlayer _player;

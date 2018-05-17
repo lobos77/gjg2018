@@ -35,6 +35,15 @@ void Game::init()
     _playground->setSize(game_size);
 
     _selector = new MonsterSelect;
+    _selector->setAnim("carte_insecte");
+    _selector->attachTo(this);
+    _selector->setPosition(_playground->getX()+_playground->getWidth(),0);
+    _selector2 = new MonsterSelect;
+    _selector->setAnim("carte_insecte");
+    _selector->attachTo(this);
+    _selector->setPosition(_playground->getX()+_playground->getWidth()+_selector,0);
+    _selector3 = new MonsterSelect;
+    _selector->setAnim("carte_insecte");
     _selector->attachTo(this);
     _selector->setPosition(_playground->getX()+_playground->getWidth(),0);
 
